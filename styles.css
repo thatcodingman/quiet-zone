@@ -147,12 +147,12 @@ button.primary, .upload-btn {
   cursor: pointer; border-radius: var(--radius); display: inline-flex; align-items: center;
 }
 button.primary:hover, .upload-btn:hover { background: var(--signal); border-color: var(--signal); }
-button.secondary {
+button.secondary, a.secondary {
   font-family: var(--mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .06em;
   padding: 12px 22px; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
   cursor: pointer; border-radius: var(--radius);
 }
-button.secondary:hover { border-color: var(--ink); }
+button.secondary:hover, a.secondary:hover { border-color: var(--ink); }
 
 .result { max-width: 420px; margin: 0 auto; padding: 18px 20px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
 .result[hidden] { display: none; }

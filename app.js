@@ -89,6 +89,7 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
     URL.revokeObjectURL(img.src);
   };
   img.src = URL.createObjectURL(file);
+  e.target.value = ''; // allow re-selecting the same file to fire change again
 });
 
 function handleDecoded(text) {
@@ -96,9 +97,9 @@ function handleDecoded(text) {
   scanResult.hidden = false;
   if (/^https?:\/\//i.test(text.trim())) {
     openResult.href = text.trim();
-    openResult.hidden = false;
+    openResult.style.display = 'inline-flex';
   } else {
-    openResult.hidden = true;
+    openResult.style.display = 'none';
   }
 }
 
