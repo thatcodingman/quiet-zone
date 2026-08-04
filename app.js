@@ -28,7 +28,13 @@ let rafId = null;
 
 document.getElementById('startCamera').addEventListener('click', async () => {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } });
+    } catch (innerErr) {
+      // No rear camera available (common on laptops) — fall back to any camera.
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    }
     video.srcObject = stream;
     video.hidden = false;
     placeholder.hidden = true;
@@ -38,7 +44,8 @@ document.getElementById('startCamera').addEventListener('click', async () => {
     tick();
   } catch (err) {
     placeholder.hidden = false;
-    placeholder.textContent = "Camera unavailable — try uploading an image instead.";
+    placeholder.textContent = `Camera unavailable (${err.name || 'error'}) — try uploading an image instead.`;
+    console.error('Camera error:', err);
   }
 });
 
