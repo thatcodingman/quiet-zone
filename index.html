@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet Zone — Scan and generate QR codes</title>
+<meta name="description" content="A QR code reader and generator that runs entirely in your browser. Nothing you scan or create ever touches a server.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' fill='%23F6F7F5'/><rect x='4' y='4' width='16' height='16' fill='%2314161C'/><rect x='9' y='9' width='6' height='6' fill='%23F6F7F5'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="wordmark">Quiet Zone</a>
+  <nav class="nav-links">
+    <a href="#tool">Scan</a>
+    <a href="#tool">Generate</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Scan / Generate</p>
+      <h1>Every code has a quiet zone.</h1>
+      <p class="lead">It's the blank margin a QR code needs to be readable — and it's the whole idea here. Point a camera at a code, or turn anything into one. Nothing you scan or create leaves your browser.</p>
+      <div class="cta">
+        <a href="#tool" class="primary" style="display:inline-flex;align-items:center;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;padding:12px 22px;background:var(--ink);color:var(--panel);border-radius:var(--radius);">Open the tool</a>
+      </div>
+    </div>
+    <div class="qr-art" aria-hidden="true">
+      <div class="finder tl"></div>
+      <div class="finder tr"></div>
+      <div class="finder bl"></div>
+      <div class="mod" style="top:20px;left:120px;"></div>
+      <div class="mod" style="top:36px;left:150px;"></div>
+      <div class="mod" style="top:52px;left:110px;"></div>
+      <div class="mod" style="top:72px;left:170px;"></div>
+      <div class="mod" style="top:96px;left:70px;"></div>
+      <div class="mod" style="top:110px;left:140px;"></div>
+      <div class="mod" style="top:130px;left:190px;"></div>
+      <div class="mod" style="top:150px;left:110px;"></div>
+      <div class="mod" style="top:170px;left:150px;"></div>
+      <div class="mod" style="top:190px;left:90px;"></div>
+      <div class="mod" style="top:60px;left:200px;"></div>
+      <div class="mod" style="top:140px;left:60px;"></div>
+      <div class="sweep"></div>
+    </div>
+  </section>
+
+  <section class="tool" id="tool">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="scan" role="tab" aria-selected="true">Scan</button>
+      <button class="tab" data-tab="generate" role="tab" aria-selected="false">Generate</button>
+    </div>
+
+    <div class="panel" id="panel-scan">
+      <div class="viewfinder">
+        <video id="video" hidden muted playsinline aria-label="Camera preview for scanning a QR code"></video>
+        <canvas id="canvas" hidden></canvas>
+        <div class="placeholder" id="vfPlaceholder">Camera off — tap "Use camera" or upload an image.</div>
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+      </div>
+      <div class="controls">
+        <button class="primary" id="startCamera">Use camera</button>
+        <label class="upload-btn" for="fileInput">Upload image</label>
+        <input type="file" id="fileInput" accept="image/*" hidden>
+      </div>
+      <div class="result" id="scanResult" hidden>
+        <p class="result-label">Decoded</p>
+        <p id="resultText"></p>
+        <div class="result-actions">
+          <button class="secondary" id="copyResult">Copy</button>
+          <a class="secondary" id="openResult" href="#" target="_blank" rel="noopener" hidden style="display:inline-flex;align-items:center;">Open link</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="panel-generate" hidden>
+      <div class="gen-form">
+        <input type="text" id="genInput" placeholder="Paste a link, or type anything">
+        <div class="gen-options">
+          <label>Size
+            <select id="genSize">
+              <option value="200">Small</option>
+              <option value="320" selected>Medium</option>
+              <option value="480">Large</option>
+            </select>
+          </label>
+          <label>Error correction
+            <select id="genEC">
+              <option value="L">Low</option>
+              <option value="M" selected>Medium</option>
+              <option value="Q">Quartile</option>
+              <option value="H">High</option>
+            </select>
+          </label>
+        </div>
+        <button class="primary" id="genBtn" style="align-self:flex-start;">Generate</button>
+        <div id="qrOutput"></div>
+        <button class="secondary" id="downloadBtn" hidden>Download PNG</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <nav>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>© 2026 Quiet Zone — everything above runs in your browser.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

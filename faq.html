@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — Quiet Zone</title>
+<meta name="description" content="Answers about how Quiet Zone scans and generates QR codes, camera permissions, privacy, and error correction levels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="wordmark">Quiet Zone</a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="legal">
+    <h1>Frequently asked questions</h1>
+    <p class="updated">Camera, privacy, and how the tool works</p>
+
+    <details class="faq-item" open>
+      <summary>Is Quiet Zone actually free?</summary>
+      <p>Yes. There's no paid tier, no usage limit, and no account required to scan or generate codes.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Do you store the codes I scan or generate?</summary>
+      <p>No. Everything happens locally in your browser. Camera frames, uploaded images, and generated codes are never uploaded or stored on a server — see the <a href="privacy.html">Privacy Policy</a> for the full explanation.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why does the site ask for camera access?</summary>
+      <p>Only to show a live preview so you can point at a code. Your browser handles the permission directly; Quiet Zone reads video frames locally to look for a code and never transmits them anywhere.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>The camera won't turn on — what do I do?</summary>
+      <p>Camera access needs a secure connection (HTTPS) and browser permission. If it's blocked, check your browser's site settings for a denied camera permission, or use the "Upload image" option instead, which works from any photo of a code.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>What's the difference between the error correction levels?</summary>
+      <p>Low, Medium, Quartile, and High control how much of a generated code can be damaged, smudged, or obscured and still scan correctly. Higher levels are more forgiving but make the code visually denser. Medium is a good default for most uses; use High if the code will be printed small or somewhere it might get scratched, like a sticker.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is there a limit to how much text I can put in a code?</summary>
+      <p>QR codes can hold a few thousand characters, but longer text produces a denser, harder-to-scan code. For links and short messages you won't notice a limit; for long text, a higher error correction level or a shorter link works better.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I use this without an internet connection?</summary>
+      <p>Once the page has loaded, scanning and generating both run locally, so a spotty connection won't interrupt an in-progress scan. Loading the page itself still needs a connection the first time.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is it safe to scan a code I found somewhere in public?</summary>
+      <p>Quiet Zone shows you the decoded destination before it opens anything, so you can read the link first instead of being redirected automatically. That said, no scanner can tell you whether a destination itself is safe — treat an unfamiliar link the same way you would if someone texted it to you.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Found a bug or have a suggestion?</summary>
+      <p>We'd like to hear about it — see the <a href="contact.html">Contact</a> page for the fastest way to reach us.</p>
+    </details>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <nav>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p>© 2026 Quiet Zone</p>
+  </div>
+</footer>
+
+</body>
+</html>
